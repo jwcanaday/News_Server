@@ -2,7 +2,6 @@ name: Generate RSS Feed
 
 on:
   schedule:
-    # Runs at 12:00 PM and 6:00 PM Central Time (converted to UTC: 17:00 and 23:00)
     - cron: '0 17 * * *'
     - cron: '0 23 * * *'
   workflow_dispatch:
@@ -32,8 +31,8 @@ jobs:
 
       - name: Commit and push updated RSS feed
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add mn_ag_rss.xml seen_items.json
           git commit -m "Automated update of RSS feed" || echo "No changes to commit"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
