@@ -1,0 +1,52 @@
+name: Generate RSS Feed
+
+on:
+  schedule:
+    # Runs at 12:00 PM and 6:00 PM Central Time (converted to UTC: 17:00 and 23:00)
+    - cron: '0 17 * * *'
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install feedgen demjson3 python-dateutil
+
+      - name: Run RSS generator
+        run: python ago_news_rss.py
+
+      - name: Commit and push updated RSS feed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mn_ag_rss.xml seen_items.json
+          git commit -m "Automated update of RSS feed" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create issue on failure
+        if: failure()
+        uses: dacbd/create-issue-action@v1.1.0
+        with:
+          title: "🚨 RSS Feed Generation Failed"
+          body: |
+            The GitHub Actions workflow `generate_rss.yml` failed on `${{ github.event_name }}`.
+            Please review the logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
