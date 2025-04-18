@@ -1,12 +1,12 @@
 import os
 import json
 import logging
-import re
 from datetime import datetime, timezone
 from feedgen.feed import FeedGenerator
 import requests
 import demjson3
 from dateutil import parser as date_parser
+import subprocess
 
 # --- Configuration ---
 BASE_JS_URL = "https://www.ag.state.mn.us/Office/Communications/_Scripts/pr{}.js"
@@ -29,22 +29,18 @@ if os.path.exists(CACHE_FILE):
 
 # --- Clean JavaScript to JSON-Compatible String ---
 def extract_and_clean_js(js_text):
-    # Extract array block
     start = js_text.find("[")
     end = js_text.rfind("]") + 1
     raw = js_text[start:end]
-
-    # Remove JS-style comments
     raw = re.sub(r"//.*?$", "", raw, flags=re.MULTILINE)
     raw = re.sub(r"/\*.*?\*/", "", raw, flags=re.DOTALL)
-
     return raw
 
 # --- Set up Feed Generator ---
 fg = FeedGenerator()
 fg.title("Minnesota AG Press Releases")
 fg.link(href=BASE_LINK_URL, rel='alternate')
-fg.link(href="https://example.com/mn_ag_rss.xml", rel='self')  # Replace with your real GitHub Pages URL
+fg.link(href="https://jwcanaday.github.io/mn-ag-rss/mn_ag_rss.xml", rel='self')
 fg.description("Latest press releases from the Minnesota Attorney General's Office")
 
 new_links = set()
@@ -62,7 +58,6 @@ for year in YEARS:
         js_clean = extract_and_clean_js(js)
 
         try:
-            # Use demjson3's forgiving decoder
             items = demjson3.decode(js_clean)
             logging.info(f"Parsed {len(items)} items for {year}")
         except Exception as e:
@@ -72,16 +67,10 @@ for year in YEARS:
                 logging.info(f"Partially parsed {len(items)} items for {year}")
             except Exception as e2:
                 logging.error(f"Failed even with decode_partial for {year}: {e2}")
-                with open(f"debug_pr{year}.js", "w", encoding="utf-8") as dbg:
-                    dbg.write(js_clean)
                 continue
 
-        # Sort from newest to oldest
         try:
-            items.sort(
-                key=lambda x: date_parser.parse(x["date"]),
-                reverse=True
-            )
+            items.sort(key=lambda x: date_parser.parse(x["date"]), reverse=True)
         except Exception as e:
             logging.warning(f"Failed to sort items for {year}: {e}")
 
@@ -93,13 +82,10 @@ for year in YEARS:
 
                 title = entry["title"].strip()
                 lede = entry.get("lede", "").strip() or "No description available."
-
-                # ✅ Flexible date parsing
                 try:
                     pub_date = datetime.strptime(entry["date"], "%B %d, %Y").replace(tzinfo=timezone.utc)
                 except ValueError:
                     pub_date = date_parser.parse(entry["date"]).replace(tzinfo=timezone.utc)
-                    logging.warning(f"Used fallback date parser for: {entry['date']}")
 
                 fe = fg.add_entry()
                 fe.title(title)
@@ -134,3 +120,11 @@ if new_links:
         json.dump(sorted(seen), f, indent=2)
     logging.info(f"Updated seen items cache with {len(new_links)} items.")
 
+# --- Git Push (if changes made) ---
+try:
+    subprocess.run(["git", "add", RSS_FILE, CACHE_FILE], check=True)
+    subprocess.run(["git", "commit", "-m", "Auto-update RSS feed"], check=True)
+    subprocess.run(["git", "push"], check=True)
+    logging.info("RSS XML and cache pushed to GitHub.")
+except subprocess.CalledProcessError as e:
+    logging.warning(f"Git push failed or nothing to commit: {e}")
