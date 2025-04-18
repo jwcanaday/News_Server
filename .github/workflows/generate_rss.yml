@@ -44,9 +44,8 @@ jobs:
         if: failure()
         uses: dacbd/create-issue-action@v1.1.0
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           title: "🚨 RSS Feed Generation Failed"
           body: |
             The GitHub Actions workflow `generate_rss.yml` failed on `${{ github.event_name }}`.
             Please review the logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
