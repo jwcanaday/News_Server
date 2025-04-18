@@ -38,13 +38,13 @@ jobs:
           git commit -m "Automated update of RSS feed" || echo "No changes to commit"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_FOR_ISSUES }}
 
       - name: Create issue on failure
         if: failure()
         uses: dacbd/create-issue-action@v1.1.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_FOR_ISSUES }}
           title: "🚨 RSS Feed Generation Failed"
           body: |
             The GitHub Actions workflow `generate_rss.yml` failed on `${{ github.event_name }}`.
