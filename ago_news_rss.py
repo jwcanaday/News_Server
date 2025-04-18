@@ -1,6 +1,7 @@
 import os
 import json
 import logging
+import re
 from datetime import datetime, timezone
 from feedgen.feed import FeedGenerator
 import requests
