@@ -1,110 +1,75 @@
-# Minnesota AG Press Releases RSS Feed
+# Minnesota AG Press Release RSS Generator
 
-[![RSS Build Status](https://github.com/jwcanaday/mn-ag-rss/actions/workflows/generate_rss.yml/badge.svg)](https://github.com/jwcanaday/mn-ag-rss/actions/workflows/generate_rss.yml)
-[![Last Commit](https://img.shields.io/github/last-commit/jwcanaday/mn-ag-rss)](https://github.com/jwcanaday/mn-ag-rss)
-[![RSS Feed Valid](https://img.shields.io/badge/feed-valid-brightgreen)](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fjwcanaday.github.io%2Fmn-ag-rss%2Fmn_ag_rss.xml)
-
-This project generates and publishes a live RSS feed from the Minnesota Attorney General's Office website, which does not natively provide one. The feed is built using a custom Python script and updated twice daily via GitHub Actions. The system integrates with Feedly, Zapier, and Airtable to provide a fully automated alerting and archival workflow.
+This repository contains a Python script and GitHub Actions workflow to automatically generate an RSS feed from press release data published by the Minnesota Attorney General's Office. The AG’s website does not provide an RSS feed, so this system scrapes historical JavaScript-based content and transforms it into a standards-compliant RSS XML feed.
 
 ---
 
-## 🔧 What the Script Does
+## 📌 Features
 
-The Python script (`ago_news_rss.py`) automates:
-
-1. **Scraping JavaScript data** files (`prYYYY.js`) from the MN AG site.
-2. **Parsing** those non-standard JavaScript arrays using `demjson3`.
-3. **Sorting releases** from newest to oldest.
-4. **Skipping duplicates** using a `seen_items.json` cache.
-5. **Generating an RSS 2.0 XML feed** using `feedgen`.
-6. **Committing and pushing updates** to the GitHub repo automatically.
-7. **Logging errors and status** via GitHub Actions.
+- ✅ Scrapes historical press releases from JS files for years 2018–2025
+- ✅ Handles multiple variations in date formatting
+- ✅ Filters out duplicates based on a local cache (`seen_items.json`)
+- ✅ Outputs a clean `mn_ag_rss.xml` RSS feed suitable for Feedly, Zapier, and other readers
+- ✅ Runs automatically twice daily (12pm and 6pm Central Time)
+- ✅ Publishes updated RSS feed to GitHub Pages
+- ✅ Logs issues and creates GitHub issues on failure (via PAT)
 
 ---
 
-## 📡 RSS Feed Hosting via GitHub Pages
+## 📂 Output Files
 
-The output RSS feed is hosted via GitHub Pages at:
-
-**RSS Feed URL**:  
-```
-https://jwcanaday.github.io/mn-ag-rss/mn_ag_rss.xml
-```
-
-A `.nojekyll` file ensures that GitHub Pages serves the XML file correctly.
+- `mn_ag_rss.xml` – The current RSS feed (viewable at https://jwcanaday.github.io/News_Server/mn_ag_rss.xml)
+- `seen_items.json` – Cache of processed press release URLs to avoid duplicates
 
 ---
 
-## 🔁 GitHub Actions Automation
+## ⚙️ GitHub Actions Automation
 
-The workflow (`.github/workflows/generate_rss.yml`) is scheduled to run **twice daily**:
+The script is run by a scheduled GitHub Actions workflow defined in `.github/workflows/generate_rss.yml`. Key functionality includes:
 
-- ⏰ 12:00 PM Central (17:00 UTC)
-- ⏰ 6:00 PM Central (23:00 UTC)
-
-It performs the following steps:
-
-- Checks out the latest code
-- Installs Python dependencies
-- Runs `ago_news_rss.py`
-- Commits any changes to `mn_ag_rss.xml` and `seen_items.json`
-- Pushes to the `main` branch
-- **Automatically creates an issue** if the script fails
+- Setting up Python and dependencies
+- Running `ago_news_rss.py`
+- Committing and pushing updates to `mn_ag_rss.xml` and `seen_items.json`
+- Automatically creating an issue if the script fails (using `PAT_FOR_ISSUES` secret)
 
 ---
 
-## 🔄 Workflow Integration
+## 🛠️ Key Script Enhancements
 
-This system is fully integrated with cloud tools:
-
-### 📰 Feedly
-Feedly subscribes to the live GitHub-hosted RSS feed.
-
-### 🤖 Zapier
-Zapier automation adds each new Feedly item to an Airtable base.
-
-### 📬 Airtable
-Airtable automation emails the user whenever a new record is added.
+- **Robust date normalization**: Handles irregular formats such as:
+  - `"January 19 2022"` → `"January 19, 2022"`
+  - `"December 2018"` → `"December 1, 2018"`
+- **Key normalization**: Accepts both `Date` and `date`, `Title` and `title`, etc.
+- **Inline publication date**: Includes `<pubDate>` and visible publication date in `<content>` for use in Zapier and Feedly automations
 
 ---
 
-## 🗂 Project Structure
+## 🔁 Integration with Feedly + Zapier + Airtable
 
-```
-.
-├── ago_news_rss.py          # Main script: scrapes, builds RSS, pushes to GitHub
-├── mn_ag_rss.xml            # Live RSS feed file (auto-updated)
-├── seen_items.json          # Cache of seen entries to prevent duplicates
-├── .github/
-│   └── workflows/
-│       └── generate_rss.yml # GitHub Actions: scheduled twice daily
-├── .nojekyll                # Ensures raw XML served correctly by GitHub Pages
-└── README.md                # This documentation
-```
+1. **Feedly** subscribes to the GitHub-hosted RSS feed.
+2. **Zapier** watches the Feedly RSS feed for new items.
+3. **Zapier automation** pushes each new item into Airtable.
+4. **Airtable automation** emails the user whenever a new record is created.
+
+This setup ensures real-time delivery and tracking of press releases in your preferred workspace.
 
 ---
 
-## 🛠 Requirements
+## 🧩 Future Enhancements (Under Consideration)
 
-If running locally:
-
-```bash
-pip install feedgen demjson3 python-dateutil
-```
-
-You’ll also need Git configured to commit and push to your GitHub repo.
+- Full HTML scraping of press release content (`<div id="content">`)
+- Preservation of PDF and document hyperlinks
+- Categorization and tagging of press releases by subject
+- Airtable backfill and syncing from RSS
 
 ---
 
-## 🚀 Future Enhancements
+## 📄 License
 
-- Add keyword filtering or tag-based alerts
-- Extract full HTML or documents from press releases
-- Archive PDFs or generate summaries for Airtable
-- Sync Airtable to backup storage or databases
+MIT License. This repository is maintained for personal workflow automation and may be extended or forked under open terms.
 
 ---
 
-## 👤 Maintainer
+## 🙋‍♂️ Maintainer
 
-This project is maintained by [@jwcanaday](https://github.com/jwcanaday) for monitoring and analysis of public press releases from the MN AG's Office.
+Created and maintained by [@jwcanaday](https://github.com/jwcanaday)
