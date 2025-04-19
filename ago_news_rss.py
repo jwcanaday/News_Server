@@ -47,7 +47,6 @@ for year in YEARS:
         resp = requests.get(js_url)
         js_raw = resp.text.strip()
 
-        # Extract raw JS variable assignment
         js_clean = re.sub(r'^var pr\d+\s*=\s*', '', js_raw, count=1).strip().rstrip(';')
         entries = demjson3.decode(js_clean)
 
@@ -59,7 +58,14 @@ for year in YEARS:
     for entry in entries:
         try:
             date_str = entry.get("Date", "").strip()
-            pub_date = datetime.strptime(date_str, "%B %d, %Y").replace(tzinfo=timezone.utc)
+            if not date_str:
+                raise ValueError("Missing publication date")
+
+            try:
+                pub_date = datetime.strptime(date_str, "%B %d, %Y").replace(tzinfo=timezone.utc)
+            except ValueError:
+                raise ValueError(f"Unrecognized date format: '{date_str}'")
+
             title = entry.get("Title", "").strip()
             link = entry.get("Link", "").strip()
             lede = entry.get("Lede", "").strip()
