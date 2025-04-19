@@ -57,22 +57,24 @@ for year in YEARS:
 
     for entry in entries:
         try:
-            date_str = entry.get("Date", "").strip()
+            # Normalize keys to lowercase
+            entry = {k.lower(): v for k, v in entry.items()}
+
+            date_str = entry.get("date", "").strip()
             if not date_str:
-                logging.warning(f"Missing publication date. Entry keys: {list(entry.keys())}, Entry: {entry}")
                 raise ValueError("Missing publication date")
 
             try:
                 pub_date = datetime.strptime(date_str, "%B %d, %Y").replace(tzinfo=timezone.utc)
             except ValueError:
-                logging.warning(f"Unrecognized date format: '{date_str}'. Entry keys: {list(entry.keys())}, Entry: {entry}")
-                raise
+                logging.warning(f"Unrecognized date format: '{date_str}' — Entry: {entry}")
+                raise ValueError("Unrecognized date format")
 
-            title = entry.get("Title", "").strip()
-            link = entry.get("Link", "").strip()
-            lede = entry.get("Lede", "").strip()
+            title = entry.get("title", "").strip()
+            link = entry.get("file", "").strip()
+            lede = entry.get("lede", "").strip()
 
-            full_url = link if link.startswith("http") else BASE_URL + link
+            full_url = link if link.startswith("http") else BASE_URL + "/Office/Communications/" + link
 
             if full_url in seen:
                 continue
@@ -104,4 +106,3 @@ if new_items:
     logging.info(f"Added {len(new_items)} new entries.")
 else:
     logging.info("No new entries added.")
-    
