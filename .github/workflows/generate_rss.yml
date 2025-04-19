@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install feedgen demjson3 python-dateutil requests
+          pip install feedgen demjson3 python-dateutil requests beautifulsoup4
 
       - name: Run RSS generator
         run: python ago_news_rss.py
