@@ -62,13 +62,19 @@ for year in YEARS:
 
             date_str = entry.get("date", "").strip()
             if not date_str:
+                logging.warning(f"Missing publication date. Entry keys: {list(entry.keys())}, Entry: {entry}")
                 raise ValueError("Missing publication date")
 
-            try:
-                pub_date = datetime.strptime(date_str, "%B %d, %Y").replace(tzinfo=timezone.utc)
-            except ValueError:
-                logging.warning(f"Unrecognized date format: '{date_str}' — Entry: {entry}")
-                raise ValueError("Unrecognized date format")
+            # Normalize date formatting
+            normalized_date = date_str.strip()
+
+            if re.match(r"^[A-Za-z]+ \d{1,2} \d{4}$", normalized_date):
+                parts = normalized_date.split()
+                normalized_date = f"{parts[0]} {parts[1]}, {parts[2]}"
+            elif re.match(r"^[A-Za-z]+ \d{4}$", normalized_date):
+                normalized_date = f"{normalized_date.split()[0]} 1, {normalized_date.split()[1]}"
+
+            pub_date = datetime.strptime(normalized_date, "%B %d, %Y").replace(tzinfo=timezone.utc)
 
             title = entry.get("title", "").strip()
             link = entry.get("file", "").strip()
