@@ -64,6 +64,7 @@ for year in YEARS:
             try:
                 pub_date = datetime.strptime(date_str, "%B %d, %Y").replace(tzinfo=timezone.utc)
             except ValueError:
+                logging.warning(f"Missing publication date. Entry keys: {list(entry.keys())}, Entry: {entry}")
                 raise ValueError(f"Unrecognized date format: '{date_str}'")
 
             title = entry.get("Title", "").strip()
