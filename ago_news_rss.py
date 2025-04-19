@@ -59,13 +59,14 @@ for year in YEARS:
         try:
             date_str = entry.get("Date", "").strip()
             if not date_str:
+                logging.warning(f"Missing publication date. Entry keys: {list(entry.keys())}, Entry: {entry}")
                 raise ValueError("Missing publication date")
 
             try:
                 pub_date = datetime.strptime(date_str, "%B %d, %Y").replace(tzinfo=timezone.utc)
             except ValueError:
-                logging.warning(f"Missing publication date. Entry keys: {list(entry.keys())}, Entry: {entry}")
-                raise ValueError(f"Unrecognized date format: '{date_str}'")
+                logging.warning(f"Unrecognized date format: '{date_str}'. Entry keys: {list(entry.keys())}, Entry: {entry}")
+                raise
 
             title = entry.get("Title", "").strip()
             link = entry.get("Link", "").strip()
@@ -103,3 +104,4 @@ if new_items:
     logging.info(f"Added {len(new_items)} new entries.")
 else:
     logging.info("No new entries added.")
+    
