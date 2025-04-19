@@ -1,131 +1,98 @@
-import os
-import json
-import logging
-import re
-from datetime import datetime, timezone
-from feedgen.feed import FeedGenerator
+import warnings
+warnings.simplefilter("ignore")
+
+import urllib3
+from urllib3.exceptions import NotOpenSSLWarning
+warnings.filterwarnings("ignore", category=NotOpenSSLWarning)
+
 import requests
+from bs4 import BeautifulSoup
+from feedgen.feed import FeedGenerator
+from datetime import datetime, timezone
+import re
 import demjson3
-from dateutil import parser as date_parser
-import subprocess
+import os
+import logging
+import json
 
-# --- Configuration ---
-BASE_JS_URL = "https://www.ag.state.mn.us/Office/Communications/_Scripts/pr{}.js"
-BASE_LINK_URL = "https://www.ag.state.mn.us/Office/Communications/"
-YEARS = range(2018, 2026)
-CACHE_FILE = "seen_items.json"
-RSS_FILE = "mn_ag_rss.xml"
-
-# --- Setup Logging ---
+# --- Setup logging ---
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-# --- Load Seen Links ---
+# --- Constants ---
+BASE_URL = "https://www.ag.state.mn.us"
+FEED_URL = f"{BASE_URL}/Office/Communications.asp"
+YEARS = list(range(2018, 2026))
+SEEN_ITEMS_FILE = "seen_items.json"
+
+# --- Load cache ---
 seen = set()
-if os.path.exists(CACHE_FILE):
-    with open(CACHE_FILE, "r") as f:
-        try:
-            seen = set(json.load(f))
-        except Exception as e:
-            logging.warning(f"Error loading cache: {e}")
+if os.path.exists(SEEN_ITEMS_FILE):
+    with open(SEEN_ITEMS_FILE, "r") as f:
+        seen = set(json.load(f))
 
-# --- Clean JavaScript to JSON-Compatible String ---
-def extract_and_clean_js(js_text):
-    start = js_text.find("[")
-    end = js_text.rfind("]") + 1
-    raw = js_text[start:end]
-    raw = re.sub(r"//.*?$", "", raw, flags=re.MULTILINE)
-    raw = re.sub(r"/\*.*?\*/", "", raw, flags=re.DOTALL)
-    return raw
-
-# --- Set up Feed Generator ---
+# --- Prepare feed ---
 fg = FeedGenerator()
 fg.title("Minnesota AG Press Releases")
-fg.link(href=BASE_LINK_URL, rel='alternate')
-fg.link(href="https://jwcanaday.github.io/mn-ag-rss/mn_ag_rss.xml", rel='self')
+fg.link(href=FEED_URL, rel='alternate')
+fg.link(href="https://jwcanaday.github.io/News_Server/mn_ag_rss.xml", rel='self')
 fg.description("Latest press releases from the Minnesota Attorney General's Office")
 
-new_links = set()
-entry_count = 0
+new_items = []
 
+# --- Process each year's JS file ---
 for year in YEARS:
-    url = BASE_JS_URL.format(year)
-    logging.info(f"Processing year {year} from {url}")
-
+    js_url = f"{BASE_URL}/Office/Communications/_Scripts/pr{year}.js"
+    logging.info(f"Processing year {year} from {js_url}")
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        js = response.text
+        resp = requests.get(js_url)
+        js_raw = resp.text.strip()
 
-        js_clean = extract_and_clean_js(js)
+        # Extract raw JS variable assignment
+        js_clean = re.sub(r'^var pr\d+\s*=\s*', '', js_raw, count=1).strip().rstrip(';')
+        entries = demjson3.decode(js_clean)
 
+        logging.info(f"Parsed {len(entries)} items for {year}")
+    except Exception as e:
+        logging.error(f"Error parsing {js_url}: {e}")
+        continue
+
+    for entry in entries:
         try:
-            items = demjson3.decode(js_clean)
-            logging.info(f"Parsed {len(items)} items for {year}")
-        except Exception as e:
-            logging.warning(f"demjson3 failed for {year}, trying partial parse: {e}")
-            try:
-                items = demjson3.decode_partial(js_clean)
-                logging.info(f"Partially parsed {len(items)} items for {year}")
-            except Exception as e2:
-                logging.error(f"Failed even with decode_partial for {year}: {e2}")
+            date_str = entry.get("Date", "").strip()
+            pub_date = datetime.strptime(date_str, "%B %d, %Y").replace(tzinfo=timezone.utc)
+            title = entry.get("Title", "").strip()
+            link = entry.get("Link", "").strip()
+            lede = entry.get("Lede", "").strip()
+
+            full_url = link if link.startswith("http") else BASE_URL + link
+
+            if full_url in seen:
                 continue
 
-        try:
-            items.sort(key=lambda x: date_parser.parse(x["date"]), reverse=True)
+            fe = fg.add_entry()
+            fe.title(title)
+            fe.link(href=full_url)
+            fe.guid(full_url, permalink=True)
+            fe.pubDate(pub_date)
+
+            formatted_date = pub_date.strftime("%B %d, %Y")
+            fe.content(
+                f"<p><strong>Publication Date:</strong> {formatted_date}</p>"
+                f"<p>{lede}</p>"
+                f"<p><a href='{full_url}'>{full_url}</a></p>",
+                type="CDATA"
+            )
+
+            new_items.append(full_url)
         except Exception as e:
-            logging.warning(f"Failed to sort items for {year}: {e}")
+            logging.warning(f"Error processing entry: {e}")
 
-        for entry in items:
-            try:
-                link = BASE_LINK_URL + entry["file"]
-                if link in seen:
-                    continue
-
-                title = entry["title"].strip()
-                lede = entry.get("lede", "").strip() or "No description available."
-                try:
-                    pub_date = datetime.strptime(entry["date"], "%B %d, %Y").replace(tzinfo=timezone.utc)
-                except ValueError:
-                    pub_date = date_parser.parse(entry["date"]).replace(tzinfo=timezone.utc)
-
-                fe = fg.add_entry()
-                fe.title(title)
-                fe.link(href=link)
-                fe.guid(link, permalink=True)
-                fe.pubDate(pub_date)
-                fe.content(f"<p>{lede}</p><p><a href='{link}'>{link}</a></p>", type="CDATA")
-
-                new_links.add(link)
-                entry_count += 1
-                logging.info(f"Added: {title}")
-
-            except Exception as e:
-                logging.warning(f"Error processing entry: {e}")
-
-    except requests.HTTPError as e:
-        logging.warning(f"Could not fetch {url}: {e}")
-    except Exception as e:
-        logging.error(f"Unexpected error fetching {url}: {e}")
-
-# --- Write RSS Feed ---
-if entry_count > 0:
-    fg.rss_file(RSS_FILE)
-    logging.info(f"Wrote {entry_count} new entries to {RSS_FILE}")
+# --- Save updated feed and cache ---
+if new_items:
+    fg.rss_file("mn_ag_rss.xml")
+    seen.update(new_items)
+    with open(SEEN_ITEMS_FILE, "w") as f:
+        json.dump(sorted(seen), f, indent=2)
+    logging.info(f"Added {len(new_items)} new entries.")
 else:
     logging.info("No new entries added.")
-
-# --- Update Cache ---
-if new_links:
-    seen.update(new_links)
-    with open(CACHE_FILE, "w") as f:
-        json.dump(sorted(seen), f, indent=2)
-    logging.info(f"Updated seen items cache with {len(new_links)} items.")
-
-# --- Git Push (if changes made) ---
-try:
-    subprocess.run(["git", "add", RSS_FILE, CACHE_FILE], check=True)
-    subprocess.run(["git", "commit", "-m", "Auto-update RSS feed"], check=True)
-    subprocess.run(["git", "push"], check=True)
-    logging.info("RSS XML and cache pushed to GitHub.")
-except subprocess.CalledProcessError as e:
-    logging.warning(f"Git push failed or nothing to commit: {e}")
