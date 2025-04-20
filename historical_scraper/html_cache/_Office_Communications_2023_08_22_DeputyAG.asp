@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Language" content="en-us">
+
+<meta name="description" content="Attorney General Ellison names Dana Mitchell as Deputy Attorney General ">
+<meta name="keywords" content="Attorney General, Minnesota, Keith Ellison, Press Release, ">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@AGEllison" />
+<meta name="twitter:title" content="Attorney General Ellison names Dana Mitchell as Deputy Attorney General " />
+<meta name="twitter:description" content="Current AGO Public Safety division manager is 25-year veteran of legal, public, community service" />
+<meta name="twitter:image" content="https://www.ag.state.mn.us/_Img/Logo_SM.jpg" />
+<meta property="og:url" content="https://www.ag.state.mn.us/Office/Communications/2023/08/22_DeputyAG.asp" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Attorney General Ellison names Dana Mitchell as Deputy Attorney General "/>
+<meta property="og:description" content="Current AGO Public Safety division manager is 25-year veteran of legal, public, community service" />
+<meta property="og:image" content="https://www.ag.state.mn.us/_Img/Logo_SM.jpg" />	
+
+<title>August 22, 2023 Press Release</title>
+ 
+<link href="/_CSS/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/_CSS/grid.css" rel="stylesheet" type="text/css">
+<link href="/_CSS/mainStyle.css" rel="stylesheet" type="text/css">
+<link href="/_CSS/mobileStyle.css" rel="stylesheet" type="text/css">
+	<style>
+		h1 {font-size:1.8em;}
+		h2 {font-size:1.5em;}
+		.lede {font-size:1.2em;font-style:italic;padding-bottom:1em;color:#035D87;}
+		#content td {padding:10px 0px;}
+		p em {color:#000;}
+	body,td,th {
+	font-size: 14px;
+}
+    h5 {
+	font-size: 1em;
+}
+    </style>
+
+
+<!--[if lt IE 9]>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+<script src="https://code.jquery.com/jquery.min.js" type="text/javascript" ></script>
+<script src="/_Scripts/respond.min.js"></script>
+	
+
+<!-- SiteImprove Analytics -->
+<script type="text/javascript">
+/*<![CDATA[*/
+(function() {
+var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
+sz.src = '//siteimproveanalytics.com/js/siteanalyze_1535995.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
+})();
+/*]]>*/
+</script>
+<!-- END SiteImprove Analytics -->
+</head>
+<body>
+
+ 
+ 
+ 
+<div id="pg" class="gridContainer clearfix">
+<a class="skip" href="#content" >Skip to Main Content</a>
+
+
+<div id="headerWrap">
+<div id="header">
+
+<div id="top" class="top">
+<a href="/Office/Complaint.asp" style="margin-left:10px;">File a Complaint</a>
+<a href="/Office/Publications.asp">View Publications</a>
+<a href="/Office/ContactUs.asp">Contact Us</a>                
+</div>
+
+<div id="Search" class="hide-on-mobile hide-on-tablet">
+<!-- Begin siteLevel HTML Searchbox Code --><a href="/default.asp" aria-label="AGO Homepage"><span style="text-align:center;"><img src="/_Img/agLogo.png" class="hide-on-desktop mobileLogo" alt="MNAGO Logo"></span></a>
+<form method="get" action="https://www.sitelevel.com/query" accept-charset="utf-8">
+  <div class="sl_search_box">
+    <input type="hidden" name="crid" value="ux1ytxuc"/>
+    <input type="text" name="query" aria-label="Search Website" title="Search Website"/>
+    <button type="submit">Search</button>
+  </div>
+</form>
+<!-- End siteLevel HTML Searchbox Code -->
+
+</div>
+
+
+
+<a href="/default.asp" aria-label="AGO Homepage">
+<div id="agLogoHead"><p style="text-align:center;">&nbsp;</p></div></a>	
+		
+</div><!--//  END HEADER  //-->    
+<nav>
+<div id="menuWrap"><!--//  MENU  //-->
+	   <div id="mainMenu" style="max-width:900px;"class="hide-on-mobile hide-on-tablet">
+			<ul>
+            	
+            	<li><a href="/Office/Help.asp">How Can We Help?</a>
+                	<ul>
+                    	<li><a href="/Office/Complaint.asp">File a Complaint</a></li>
+						<li><a href="/Office/CRU/">Conviction Review Unit</a></li>
+                    	<li><a href="/Office/Expungement.asp">Seal My Criminal Records</a></li>
+                    	<li><a href="/Office/ContactUs.asp">Contact Us</a></li>
+                    	<li><a href="/Office/Publications.asp">View Publications</a></li>
+                   	</ul>
+            	</li>
+            	<li><a href="/Consumer/">Topics</a>
+                	<ul>
+                    	<li><a href="/Consumer/Auto/">Automobiles</a></li>
+                    	<li><a href="/Consumer/Org/">Businesses &amp; Organizations</a></li>
+                    	<li><a href="/Charity/Donors.asp">Charities Information</a></li>
+                    	<li><a href="/Consumer/Law/ChildSupport.asp">Child Support &amp; Custody</a></li>
+                    	<li><a href="/Charity/ClubContracts.asp">Club Contracts</a></li>
+                    	<li><a href="/Consumer/Law/">Courts &amp; the Law</a></li>
+                    	<li><a href="/Consumer/Government/">Government Resources</a></li>
+                    	<li><a href="/Consumer/Health/">Health Care</a></li>
+                    	<li><a href="/Consumer/Housing/">Housing &amp; Utilities</a></li>
+                    	<li><a href="/Consumer/IdentityTheft/">Identity Theft &amp; Computers</a></li>
+                     	<li><a href="/Misinformation/">Misinformation</a></li>
+                     	<li><a href="/Consumer/Finance/">Money &amp; Credit</a></li>
+                     	<li><a href="/Price-Transparency/PriceTransparencyLaw_FAQ.pdf">Price Transparency</a></li>
+                    	<li><a href="/Consumer/Protection/">Public Protection</a></li>
+                    	<li><a href="/Consumer/Scams/">Scams</a></li>
+                    	<li><a href="/Consumer/Seniors/">Senior Citizens</a></li>
+                    	<li><a href="/Consumer/Students/">Students</a></li>
+                    	<li><a href="/Consumer/Utilities/Phone.asp">Telephones &amp; Unwanted Calls</a></li>
+                    	<li><a href="/Consumer/Vets/">Veterans &amp; Service Members</a></li>
+                    	<li><a href="/Election/Voting-Rights/">Voting Rights</a></li>
+                    	<li><a href="/Consumer/Misc/Other.asp">...Other Information</a></li>
+                    </ul>
+                </li>
+            	<li><a href="/Charity/">Charities</a>
+                	<ul class="charity">
+                    	<li><a href="/Charity/Search/">Search for Charities and Fundraisers</a></li>						<li><a href="/Charity/Donors.asp">Charities Information for the Public</a></li>
+                        <li><a href="/Charity/FileAComplaint.asp">File a Complaint about a Charity or Nonprofit</a></li>
+                    	<li><a href="/Charity/InfoNonProfits.asp">Information for Nonprofits</a></li>
+                        <li><a href="/Charity/InfoCharitableorgandTrusts.asp">Registration and Reporting - Charities and Charitable Trusts</a></li>
+                    	<li><a href="/Charity/InfoProfessionalFundRaisers.asp">Registration and Reporting - Professional Fundraisers</a></li>
+                    	<li><a href="/Charity/DownloadForms.asp">Forms and Instructions for Registration and Reporting</a></li>
+                        <li><a href="/Charity/Fees/">Pay Fees Electronically</a></li>
+                    	<li><a href="/Charity/ExtensionRequest.aspx">Request an Extension of a Filing Deadline</a></li>
+                        <li><a href="/Charity/Resources.asp">Publications and Other Resources</a></li>
+                    </ul>
+                </li>
+ 
+                  
+            	<li><a href="/Consumer/Health/">Health Care</a>
+                	<ul class="charity">
+                    	<li><a href="/MNinsulin35/">Insulin for Minnesotans</a></li>
+                    	<li><a href="/Consumer/Health/">Health Care Information for the Public</a></li>
+						<li><a href="/Health-Care/Transactions">New Requirements for Certain Health Care Entity Transactions</a></li>
+						<li><a href="/Health-Care/Transactions/ProposedMergers.asp">Proposed Hospital System Mergers</a></li>
+						<li><a href="/Health-Care/Transactions/Input.asp">Health Care Transaction Community Input Form</a></li>
+						<li><a href="/Health-Care/Billing-and-Access/">Medical Billing and Healthcare Access Community Input</a></li>						<li><a href="/AbortionRights">Know Your Rights to Abortion and Reproductive Healthcare in Minnesota</a></li>
+						<li><a href="/Opioids/">Fighting the Opioid Epidemic in Minnesota</a></li>
+                    	<li><a href="/Health-Care/Transactions/Sanford-Fairview.asp">Information Regarding Sanford Health and Fairview Health Services</a></li>
+					
+					
+					
+					
+					</ul>
+                </li>
+
+              
+                
+           	  <li><a href="/Office/">About Our Office</a>
+                	<ul class="charity">
+
+                    	<li><a href="/Office/AGBio.asp">Biography of Attorney General Keith Ellison</a></li>
+                    	<li><a href="/Office/Solicitor-General/">News and Information from the Minnesota Solicitor General</a></li>
+						<li><a href="/Office/Opinions/">Attorney General Opinions</a></li>
+						<li><a href="/Office/CLE/Default.aspx">Attorney General CLEs</a></li>
+						<li><a href="/Office/Employment/CareerOpportunities.asp">Career Opportunities</a></li>
+						<li><a href="https://mnago.nextrequest.com/" target="_blank">Data Practices Requests</a></li>
+						<li><a href="/Office/Policies.asp">Office Policies and Notices</a></li>
+                    	<li><a href="/Office/ContactUs.asp">Contact Us</a></li>
+                    	<li><a href="/Office/OpposingCounsel.asp">Service of Process</a></li>
+						<li><a href="https://forms.office.com/g/KTB7QWEcpn">Scheduling Request</a></li>
+                    </ul>
+                </li>
+            	<li><a href="/Office/Communications.asp">News &amp; Important Information</a>
+                	<ul class="news">
+						<li><a href="/Office/Communications.asp">AGO Communications</a></li>
+						<li><a href="/Opioids/Backstop/">Minnesota Opioid Litigation Backstop Fund</a></li>
+
+						<li><a href="/Student-Loans">Return to Repayment of Student Loans</a></li>
+                    	<li><a href="/Taskforce/Misclassification/">Advisory Task Force on Worker Misclassification</a></li>                                   	
+						<li><a href="/Office/Initiatives/PharmaceuticalDrugPrices/Taskforce.asp">Advisory Task Force on Lowering Pharmaceutical Drug Prices</a></li>               
+						<li><a href="/Office/Initiatives/WESA/Taskforce.asp">Advisory Task Force on Expanding the Economic Security of Women</a></li>
+						<li><a href="/Office/Cases/3M/">Information about the 3M Lawsuit</a></li>
+                    </ul>
+                </li>
+            </ul>
+</div>
+
+<div id="browseMobile" class="hide-on-desktop">
+        <ul class="accordion">
+        <li>
+          <button id="menuControl" class="accordion-control">Menu</button>
+          <div class="accordion-panel">
+        			<a href="/Default.asp">Home</a>
+        			<a href="/Office/Help.asp">How Can We Help?</a>
+ 					<a href="/Consumer/Default.asp">Topics</a>
+                	<a href="/Charity/Default.asp">Charities</a>
+					<a href="/Office/Default.asp">About Our Office</a>
+					<a href="/Office/Communications/Default.asp">News &amp; Information</a>
+                    <a href="/Office/Complaint.asp">File a Complaint</a>
+                   	<a href="/Office/Publications.asp">Order Publications</a>
+                   	<a href="/Office/ContactUs.asp">Contact Us</a>
+                    <a href="/mobileSearch.asp">Search Our Site</a>
+          </div>
+        </li>
+        </ul>
+</div>
+	
+</div><!--Menu Wrap Close-->
+</nav>		
+ 
+</div><!--Header Wrap Close-->
+
+
+
+ <div id="content">
+
+   <h1 align="center">Attorney General Ellison names Dana Mitchell as Deputy Attorney General  </h1>
+   
+<p class="lede">Current AGO Public Safety division manager is 25-year veteran of legal, public, community service </p>
+
+
+  
+ 
+   
+       <p><strong>August 22, 2023 (SAINT PAUL)</strong>Â â Minnesota Attorney General Keith Ellison announced today that he has named Dana Mitchell as Deputy Attorney General in the Minnesota Attorney General&rsquo;s Office. Ms. Mitchell will step into the role left by Deputy Attorney General Luz MarÃ­a FrÃ­as, who is retiring on SeptemberÂ 29 after a 30-year career in the law, public service, and community service, including the last three years with the Minnesota Attorney General&rsquo;s Office. Ms. Mitchell will oversee the Government Support Section of the Office, which provides legal support to a wide range of State of Minnesota agencies, boards, and commissions.Â </p>
+       <p>&ldquo;I want again to thank Luz MarÃ­a FrÃ­as for being such a tremendous asset to the Attorney General&rsquo;s Office, the State of Minnesota, and the people of our state, and for helping the Office walk through three years of great upheaval with integrity and compassion. Dana Mitchell shares Luz&rsquo;s values, her legal acumen, and her passion for working in and with community,&rdquo; Attorney General Ellison said. &ldquo;Dana, a Minnesotan with deep roots here, is deeply committed to the people of our state. She is smart, capable, and an excellent lawyer, of course, and she is much more: she is someone who works relationally, is an active member of community, understands the importance of representing State agencies well, and applies an equity lens to everything that we do. In just a few short months, she&rsquo;s proven herself to be a tremendous asset in the Attorney General&rsquo;s Office. We&rsquo;re all very proud of her and know she&rsquo;s going to do a wonderful job as Deputy Attorney General.&rdquo;</p>
+       <p>Ms. Mitchell currently serves as the manager of the Public Safety Division of the Attorney General&rsquo;s Office, which she joined in April 2023. In her current role, she manages a body of workÂ related to implied consents, driver licenses, forfeitures, titles, appellate advocacy, citizen inquires, and representation to state agencies and boards. Immediately prior to joining the Attorney General&rsquo;s Office, Ms. Mitchell served as an assistant Ramsey County attorney for many years, where she worked in the areas of employment law, juvenile prosecution, and human services, among others. She has also worked as aÂ public defender, qualified neutral, and mediator, as well as a staff attorney for a federally appointed court monitor, which resulted in a $1.25 billion settlement for Black farmers. She is a former law clerk with the Office of the Counsel to the President at the White House.Â </p>
+       <p>Ms. Mitchell is the current president of Minnesota Association of Black Lawyers. As president, Dana worked to pass a $700,000 state appropriation to support a pathway to law school for Minnesota college students. She served this year as the Minnesota co-chair of the 98thÂ Annual Conference of the National Bar Association, whichÂ is the nation's oldest and largest national network of predominantly African American attorneys.Â Â </p>
+       <p>Ms. Mitchell graduated with a joint J.D./M.S.W. degree from the University of Minnesota Law School and School of Social Work. She was a Bush Fellow at the University of Minnesota School of Social Work. She has also been an adjunct professor at MitchellâHamline School of Law and currently serves as an adjunct professor at the University of St. Thomas School of Law.Â </p>
+       <p>Ms. Mitchell serves on several community committees and recently served on the Minnesota Supreme Court Task Force on supervised practice. She has been recognized as a 2023 Honored Listee with Marquis Who&rsquo;s Who, a 2022 Minnesota Lawyer Diversity and Inclusion Honoree, and a 2022 Minnesota African American Heritage Calendar Honoree, and receivedÂ the Ramsey County Attorney's Office Employee (C.A.R.E.) Mentor Award.Â </p>
+      
+       <p>&ldquo;I joined the Attorney General&rsquo;s Office as a division manager to serve the mission, values, and goals of helping Minnesotans afford their lives and live with dignity, safety, and respect. I am excited to provide inclusive, innovative, and collaborative leadership in my new role as a Deputy Attorney General,&rdquo; Ms. Mitchell said. &ldquo;I was a first-year law student when I first met Keith Ellison. His dedication to public service inspired me then and inspires me today. This feels like a full-circle moment in which I get to live aloud my passion for public service,&rdquo;Â Ms. Mitchell continued.Â </p>
+       
+    
+
+  
+ </div><!-- content close -->
+<div id="footer">
+
+<div id="official">
+	<p>The Official Website of Office of Minnesota Attorney General Keith Ellison</p>
+</div>
+
+
+<div id="foot">
+<div class="Third">
+<p><a href="https://www.ag.state.mn.us/default.asp"><img src="https://www.ag.state.mn.us/_Img/agLogo.png" class="hide-on-desktop mobileLogo" alt="MNAGO Logo"><img src="https://www.ag.state.mn.us/_Img/agLogo.png" style="max-width:275px;" class="hide-on-mobile hide-on-tablet" alt="MNAGO Logo" /></a></p>
+</div>
+
+<div class="Two-Thirds">
+<p class="center" style="font-size:.85em;">445 Minnesota Street, Suite 600, St. Paul, MN 55101<br />
+(651) 296-3353 (Twin Cities Calling Area) &#8226; (800) 657-3787 (Outside the Twin Cities)<br />
+(800) 627-3529 (Minnesota Relay)</p>
+		<p class="center"><a href="https://www.facebook.com/AGEllison/" style="text-decoration: none;height:44px;width:44px;"><img src="https://www.ag.state.mn.us/_Img/icons/FB.png" alt="Facebook"> </a> 
+  <a href="https://twitter.com/AGEllison" style="margin-left:10px; text-decoration: none;height:44px;width:44px;"><img src="https://www.ag.state.mn.us/_Img/icons/TW.png" alt="Twitter"> </a>  
+  <a href="https://www.youtube.com/channel/UC24VphM2BVBQYrN2oTjjHUQ" style="margin-left:10px; text-decoration: none;height:44px;width:44px;"><img src="https://www.ag.state.mn.us/_Img/icons/YT.png"  alt="YouTube"> </a></p>
+
+
+</div>
+	<p class="clrBth"><em style="color:#fff;">The Minnesota Attorney General's Office values diversity and is an equal opportunity employer.</em> </p>
+
+</div><!--foot close-->
+</div>
+
+
+
+
+</div><!-- clearfix end -->
+<script src="/_Scripts/accordion.js"></script>
+</body>
+</html>
+
