@@ -16,6 +16,7 @@ These files were downloaded as part of the RSS generation and historical archivi
 - `pr2023.js`
 - `pr2024.js`
 - `pr2025.js`
+- 'download_js_ago.py'
 
 ---
 
@@ -28,3 +29,5 @@ These files were fetched directly from the public site located at:
 `https://www.ag.state.mn.us/Office/Communications/_Scripts/pr{year}.js`
 
 They are retained for backup, future re-parsing, and validation purposes should the public site ever be modified or taken offline.
+
+**download_js_ago.py** was used to download these files and is retained for future adaptation and use.  It was run on local terminal command and downloaded locally to a file.
