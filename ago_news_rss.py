@@ -21,7 +21,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 # --- Constants ---
 BASE_URL = "https://www.ag.state.mn.us"
 FEED_URL = f"{BASE_URL}/Office/Communications.asp"
-YEARS = list(range(2018, 2026))
+import datetime as _dt
+CURRENT_YEAR = _dt.datetime.now(_dt.timezone.utc).year
+YEARS = list(range(2018, CURRENT_YEAR + 1))
 SEEN_ITEMS_FILE = "seen_items.json"
 
 # --- Load cache ---
